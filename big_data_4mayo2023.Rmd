@@ -1,0 +1,207 @@
+---
+title: "DNMyE - SINTA"
+author:  "Dirección Nacional de Mercados y Estadística"
+output:
+  xaringan::moon_reader:
+    seal: false
+    css: "dnmye_theme.css"
+    nature:
+      slideNumberFormat: "%current%"
+      highlightStyle: github
+      highlightLines: true
+      ratio: 16:9
+      countIncrementalSlides: true
+---
+
+class:inverse, middle
+
+background-image: url(https://tableros.yvera.tur.ar/recursos/logos_institucionales/escudo_mdtyd_blanco.png)
+background-position: 95% 95%
+background-size: 30%
+
+# Big data para el Turismo
+
+### #LaRutaNatural PATAGONIA
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+### Dirección Nacional de Mercados y Estadística<br>Subsecretaría de Desarrollo Estratégico
+
+
+
+
+```{r, echo=FALSE, warning=FALSE}
+library(xaringanExtra)
+# LOGO COLOR EN PAGs INTERNAS
+xaringanExtra::use_logo(image_url = "https://tableros.yvera.tur.ar/recursos/logos_institucionales/escudo_mdtyd_color.png", 
+                        position = css_position(top = "1em", right = "1em"), 
+                        height = "20%", width = "20%")
+# BARRA DE PROGRESO DE PRESENTACION
+xaringanExtra::use_progress_bar(color = comunicacion::dnmye_colores("cian"))
+# LAPIZ 
+xaringanExtra::use_scribble()
+# EXPLORADOR DE SLIDES
+xaringanExtra::use_tile_view()
+# HABILITAR WEBCAM
+xaringanExtra::use_webcam()
+```
+
+
+```{r dnmye_theme, include=FALSE, warning=FALSE, eval=TRUE}
+library(xaringanthemer) #EVAL FALSE
+library(comunicacion)
+style_mono_light(outfile = "dnmye_theme.css", # CSS FILE
+                 # FONTS
+                  header_font_google = google_font('Encode Sans'),
+                  text_font_google   = google_font('Roboto'),
+                  code_font_google   = google_font('IBM Plex Mono'),
+                 # COLORES 
+                 base_color = dnmye_colores("cian"),
+                 code_inline_color = dnmye_colores("rosa"), 
+                 inverse_link_color = "#3B4449",
+                 background_color = "#FFFFFF",
+                 title_slide_background_image = "escudo_mintur_blanco.png", 
+                 title_slide_background_position = "95% 5%", 
+                 title_slide_background_size = "200px", footnote_color = "#3B4449", link_color = "3B4449",text_slide_number_font_size = "16px"
+                  
+                 )
+```
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  fig.width=9, fig.height=3.5, fig.retina=3,
+  out.width = "100%",
+  cache = FALSE,
+  echo = TRUE,
+  message = FALSE, 
+  warning = FALSE,
+  fig.show = TRUE,
+  hiline = TRUE
+)
+```
+
+
+```{css, echo=FALSE}
+div.my-footer {
+    background-color: white;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    height: 40px;
+    width: 100%;
+}
+div.my-footer span {
+    font-size: 16px;
+    color: #3B4449;
+    position: absolute;
+    left: 15px;
+    bottom: 6px;
+}
+
+
+```
+
+
+---
+
+layout: true
+
+<div class="my-footer"><span>DIRECCIÓN NACIONAL DE MERCADOS Y ESTADÍSTICA <a href="https://yvera.tur.ar/sinta"> - <b>www.yvera.tur.ar/sinta</a></b></span></div> 
+
+---
+
+
+## Caracterización del turismo en Argentina
+
+### Fuentes de Información
+
+
+* Operativos estadísticos (EOH, ETI, EVyTH)
+
+--
+
+* Registros Administrativos
+
+--
+
+* Reportes de datos jurisdiccionales (trabajo en progreso: `<data>TUR`)
+
+--
+
+### Nueva fuente de información
+
+Desarrollo de una nueva fuente de información complementaria a partir de una fuente _big data_ de señales emitidas por aplicaciones de dispositivos móviles
+
+--
+
+**Dos flujos diferentes (residentes / no residentes)**
+
+--
+
+A) Residentes: se puede identificar el _radio censal_ de la "residencia habitual" (origen -> NSE)
+
+B) No residentes: se puede determinar el _país de origen_ del dispositivo (mercado turismo receptivo)
+
+
+---
+
+## Ejemplo: IFAs Residentes:  
+
+### Punto de partida 
+
+1. 6.700M registros,  4 datasets (`GEO, IFA, CEL/CLD, APPS`), 300 GB información
+
+--
+
+2. Actividad de 17M de celulares únicos, durante 12 meses, granularidad diaria (año prepandemia).
+
+--
+
+#### Procesamiento (Ejemplo IFAs)
+
+
+3. Registros iniciales: **70M** 
+
+--
+
+4. Sin coordenadas (lat-lon): **10M** (14%)
+
+--
+
+5. Sin _Departamento_: **3M** (4%) 
+
+--
+
+6. IFAs únicos: **16M**
+
+--
+
+7. Con _Departamento_ determinable: **12M** (~ 1/2 mayores de 16 años con celular)
+
+
+
+---
+
+### Botón de muestra
+
+
+
+---
+
+
+class:  center, middle
+
+# ¡Muchas gracias!
+
+##[**`yvera.tur.ar/sinta`**](https://www.yvera.tur.ar/sinta/)
