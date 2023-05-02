@@ -195,7 +195,7 @@ B) No residentes: se puede determinar el _país de origen_ del dispositivo (merc
 
 ### Botón de muestra
 
-```{r ifas,  message=FALSE, warning=FALSE, echo = FALSE, out}
+```{r ifas,  message=FALSE, warning=FALSE, echo = FALSE}
 library(herramientas)
 library(tidyverse)
 library(sf)
@@ -203,14 +203,20 @@ library(leaflet)
 
 
 
-ifas <- herramientas::read_file_srv("big_data/viajeros_geo.parquet")
+# ifas <- herramientas::read_file_srv("big_data/viajeros_geo.parquet")
+# 
+# 
+# 
+# ifa_bariloche <- ifas %>%
+#   filter(home_dto == 226) %>% #Bariloche
+#   collect() %>% 
+#   st_as_sf(crs = 4326)
 
+# 
+# sf::write_sf(ifa_bariloche, "entradas/barilocho_ifas_interno.geojson")
 
+ifa_bariloche <- read_sf("entradas/barilocho_ifas_interno.geojson")
 
-ifa_bariloche <- ifas %>%
-  filter(home_dto == 226) %>% #Bariloche
-  collect() %>% 
-  st_as_sf(crs = 4326)
 
 
 leaflet() %>%
