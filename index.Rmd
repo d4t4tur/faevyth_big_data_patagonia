@@ -593,7 +593,16 @@ ifas_ext_patagonia_andina %>%
 
 ---
 
-### Principales *Insights*
+## Principales *Insights*
+
+--
+
+### Receptivo
+
+---
+
+## Receptivo
+
 
 
 
