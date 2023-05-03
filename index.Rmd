@@ -119,10 +119,46 @@ layout: true
 
 <div class="my-footer"><span>DIRECCIÓN NACIONAL DE MERCADOS Y ESTADÍSTICA <a href="https://yvera.tur.ar/sinta"> - <b>www.yvera.tur.ar/sinta</a></b></span></div> 
 
+
+
+
 ---
 
+background-image: url(https://raw.githubusercontent.com/dnme-minturdep/blog/master/_posts/2022-09-08-sintia/sintIA.png)
+background-position: 80% 70%
+background-size: 35%
+
+
+### `r emojifont::emoji("robot")` SintIA
+
+<br>
+
+<br>
+
+<br>
+ 
+
+<br>
+
+<br>
+
+<br>
+
+
+
+
+#### Sistema de Información Turística de la Argentina (SINTA)
+
+
+
+
+---
+
+
+class: middle
+
 background-image: url(https://pbs.twimg.com/profile_images/1027517456695406592/gQ5V7MVr_400x400.jpg)
-background-position: 70% 25%
+background-position: 70% 50%
 background-size: 15%
 
 ### Juan Pablo Ruiz Nicolini
@@ -134,10 +170,6 @@ background-size: 15%
 `r emojifont::emoji("black_circle" )` Cientista de Datos ([`tuqmano.r-universe.dev`](https://tuqmano.r-universe.dev/builds))
 
 `r emojifont::emoji("black_circle" )` Director Nacional de Mercados y Estadística ([`MINTURDEP`](https://www.yvera.tur.ar/sinta/))
-
-
-
-
 
 
 ---
@@ -231,9 +263,9 @@ class: inverse, center, middle
 
 ---
 
-### Botón de muestra: Ids con origen en BARILOCHE
+### Botón de muestra: `Ids con origen en BARILOCHE`
 
-```{r ifas,  message=FALSE, warning=FALSE, echo = FALSE, out.height='75%'}
+```{r ifas,  message=FALSE, warning=FALSE, echo = FALSE, out.height='75%', out.width= '100%'}
 library(herramientas)
 library(tidyverse) # Easily Install and Load the 'Tidyverse', CRAN v1.3.2 # Easily Install and Load the 'Tidyverse', CRAN v1.3.2
 library(sf) # Simple Features for R, CRAN v1.0-9 # Simple Features for R, CRAN v1.0-9
@@ -248,38 +280,11 @@ ifa_bariloche <- read_sf("entradas/bariloche_ifas_interno.geojson")
 
 leaflet() %>%
   geoAr::addArgTiles() %>% 
-  addCircles(data = ifa_bariloche, color = "blue") 
+  leaflet::addCircles(data = ifa_bariloche, color = "red", fillOpacity = .5) 
 
 
 
 ```
-
----
-
-
-```{r eval = FALSE}
-
-library(sf) # Simple Features for R, CRAN v1.0-9 # Simple Features for R, CRAN v1.0-9
-library(tidyverse) # Easily Install and Load the 'Tidyverse', CRAN v1.3.2 # Easily Install and Load the 'Tidyverse', CRAN v1.3.2
-library(leaflet) # Create Interactive Web Maps with the JavaScript 'Leaflet'
-library(geoAr)
-
-ifas <- tbl(con, "ifa")
-
-
-ifa_bariloche <- ifas %>%
-  filter(home_dto == 226) %>% #Bariloche
-  collect() %>% 
-  st_as_sf(coords = c("home_lon","home_lat"), crs = 4326)
-
-
-leaflet() %>%
-  addProviderTiles("CartoDB.DarkMatter") %>%
-  addCircles(data = ifa_bariloche)
-
-
-```
-
 
 
 ---
