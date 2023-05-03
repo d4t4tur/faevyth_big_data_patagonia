@@ -127,11 +127,11 @@ layout: true
 ### Fuentes de Información
 
 
-* Operativos estadísticos (EOH, ETI, EVyTH)
+* Operativos estadísticos (`EOH, ETI, EVyTH`)
 
 --
 
-* Registros Administrativos
+* Registros Administrativos (`DNM, ANAC, APN`, etc.)
 
 --
 
@@ -139,32 +139,42 @@ layout: true
 
 --
 
-### Nueva fuente de información
+### Nueva fuente de información `r emojifont::emoji("heavy_exclamation_mark")`
 
 Desarrollo de una nueva fuente de información complementaria a partir de una fuente _big data_ de señales emitidas por aplicaciones de dispositivos móviles
 
+---
+class: inverse
+
+## Dos flujos diferentes (residentes / no residentes)
+
 --
 
-**Dos flujos diferentes (residentes / no residentes)**
+### A) Residentes: 
+
+Se puede identificar el _radio censal_ de la "residencia habitual" (origen <-> NSE)
 
 --
 
-A) Residentes: se puede identificar el _radio censal_ de la "residencia habitual" (origen -> NSE)
+### B) Receptivo:
 
-B) No residentes: se puede determinar el _país de origen_ del dispositivo (mercado turismo receptivo)
+Se puede determinar el _país de origen_ del dispositivo  (mercados internacionales)
 
 
 ---
+class: inverse, center, middle
 
-## Ejemplo: IFAs Residentes
+## (A) Ejemplo:  IFAs `Residentes`
 
-### Punto de partida 
+---
+
+### Punto de partida: `Residentes`
 
 1. 6.700M registros;  4 _datasets_ (`IFA, GEO, CEL/CDL, APPS`); 300 GB información
 
 --
 
-2. Actividad de 17M de celulares únicos, durante 12 meses, con granularidad diaria (año pre pandemia).
+2. 17M de celulares únicos, durante 12 meses, con granularidad diaria (año pre pandemia).
 
 --
 
@@ -187,7 +197,9 @@ B) No residentes: se puede determinar el _país de origen_ del dispositivo (merc
 
 --
 
-7. Con _Departamento_ determinable: **12M** (~ 1/2 mayores de 16 años con celular)
+#### Datos resultantes
+
+7. Con _Departamento_ determinable: **12M (~ 1/2 mayores de 16 años con celular)**
 
 
 
@@ -219,14 +231,65 @@ leaflet() %>%
 
 ```
 
+
+
 ---
+class: inverse, center, middle
+
+## (B) Ejemplo: IFA´s `receptivo`
+
+---
+
+
+### Punto de partida: `receptivo`
+
+1. **16,69 M** de registros con información diaria de latitud y longitud a 5 decimales y país de origen del dispositivo.
+
+--
+
+2. Actividad de **592.684** de dispositivos únicos, durante 12 meses (año prepandemia).
+
+--
+
+#### Procesamiento (Ejemplo IFAs)
+
+
+1. Registros iniciales: **16,69 M**
+
+--
+
+2. Exclusión de registros posteriores a marzo 2020 y/o con  coordenadas fuera de Argentina.
+
+--
+
+3. Redondeo de las coordenadas a tres decimales de precisión.
+
+--
+
+4. Deduplicación de registros con igual coordenada y fecha (año-mes-día)
+
+--
+
+#### Datos resultantes
+
+5. Registros seleccionados: **6,44 M** de **373.287** IFAs únicos
+
+
+---
+
 # ¿Por qué es útil?
 
 --
 
-### `r emojifont::emoji("heavy_check_mark")`  Agrega nueva capa de información
+
 
 ### `r emojifont::emoji("heavy_check_mark")`  Complemento de fuentes existentes
+
+--
+
+### `r emojifont::emoji("heavy_check_mark")`  Granularidad espacio - temporal poco frecuente
+
+
 
 
 
