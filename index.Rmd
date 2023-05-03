@@ -77,7 +77,7 @@ style_mono_light(outfile = "dnmye_theme.css", # CSS FILE
 ```
 
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE, eval = FALSE}
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(
   fig.width=9, fig.height=3.5, fig.retina=3,
@@ -190,7 +190,7 @@ Se puede determinar el _país de origen_ del dispositivo  (mercados internaciona
 ---
 class: inverse, center, middle
 
-## (A) Ejemplo:  IFAs `Residentes`
+## (A) Ejemplo:  Ids `Residentes`
 
 ---
 
@@ -204,7 +204,7 @@ class: inverse, center, middle
 
 --
 
-#### Procesamiento (Ejemplo IFAs)
+#### Procesamiento (Ejemplo Ids)
 
 
 3. Registros iniciales: **70M** 
@@ -219,7 +219,7 @@ class: inverse, center, middle
 
 --
 
-6. IFAs únicos: **16M**
+6. Ids únicos: **16M**
 
 --
 
@@ -231,7 +231,7 @@ class: inverse, center, middle
 
 ---
 
-### Botón de muestra: IFAs con origen en BARILOCHE
+### Botón de muestra: Ids con origen en BARILOCHE
 
 ```{r ifas,  message=FALSE, warning=FALSE, echo = FALSE, out.height='75%'}
 library(herramientas)
@@ -285,7 +285,7 @@ leaflet() %>%
 ---
 class: inverse, center, middle
 
-## (B) Ejemplo: IFA´s `receptivo`
+## (B) Ejemplo: Id´s `receptivo`
 
 ---
 
@@ -300,7 +300,7 @@ class: inverse, center, middle
 
 --
 
-#### Procesamiento (Ejemplo IFAs)
+#### Procesamiento (Ejemplo Ids)
 
 
 1. Registros iniciales: **16,69 M**
@@ -321,12 +321,12 @@ class: inverse, center, middle
 
 #### Datos resultantes
 
-5. Registros seleccionados: **6,44 M** de **373.287** IFAs únicos
+5. Registros seleccionados: **6,44 M** de **373.287** Ids únicos
 
 ---
-### Botón de muestra: IFAs únicos por país de origen
+### Botón de muestra: Ids únicos por país de origen
 
-```{r graf ifas ext x pais,  message=FALSE, warning=FALSE, echo = FALSE}
+```{r graf ifas ext x pais,  message=FALSE, warning=FALSE, echo = FALSE, eval=FALSE}
 
 library(tidyverse)
 library(arrow)
@@ -366,23 +366,31 @@ n_ifas_pais <- n_ifas_pais %>%
 n_ifas_pais <- n_ifas_pais %>% 
   mutate(pais = fct_reorder(pais, n))
 
-ggplot(n_ifas_pais) +
+plot <- ggplot(n_ifas_pais) +
   geom_col(aes(pais, n, fill = pais),
            show.legend = F) +
-  geom_text(aes(pais, n+log(n)/2, 
+  geom_text(aes(pais, n, 
                  label = lbl_int(n)),
-             hjust = -0.3) +
+             hjust = -0.15, size = 2.5) +
+    ggimage::geom_flag(data = n_ifas_pais,
+                     aes(x = pais, y = n+28000,
+                         image = HomeCountry)) +
   scale_fill_dnmye() +
   scale_y_continuous(labels = lbl_int, expand = expansion(add = c(0, 25000))) +
   coord_flip() +
-  labs(x = "", y = "IFAs Únicos") +
+  labs(x = "", y = "") +
   theme_minimal() +
-  theme(text = element_text(size = 20)) +
-  ggimage::geom_flag(data = n_ifas_pais,
-                     aes(x = pais, y = n+2*10^3*log(n/2)+2000,
-                         image = HomeCountry))
+  theme(text = element_text(size = 12)) 
+
+
+ggsave(plot = plot, "entradas/plot_banderas.png", dpi = 300,
+       width = 6, height = 4)
 ```
 
+
+```{r echo=FALSE, out.height="70%", out.width="70%"}
+knitr::include_graphics("entradas/plot_banderas.png")
+```
 
 
 ---
@@ -400,7 +408,30 @@ ggplot(n_ifas_pais) +
 ### `r emojifont::emoji("heavy_check_mark")`  Granularidad espacio - temporal poco frecuente
 
 
+--
 
+## Caso de Uso 
+
+
+```{r lrn, echo=FALSE, out.height= '120'}
+
+knitr::include_graphics("https://tableros.yvera.tur.ar/recursos/logos_institucionales/ruta_natural_apaisado.png")
+
+```
+
+---
+class: inverse center, middle
+
+# Rutas de la Patagonia & bigdata
+```{r lrn_blaco, echo=FALSE, out.height= '120'}
+
+knitr::include_graphics("https://tableros.yvera.tur.ar/recursos/logos_institucionales/rn_apaisado_blanco.png")
+
+```
+
+---
+
+Secuencia VIZ (Interno - Receptitvo?)
 
 
 ---
