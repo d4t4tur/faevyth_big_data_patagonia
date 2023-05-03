@@ -407,25 +407,46 @@ knitr::include_graphics("entradas/plot_banderas.png")
 
 ---
 
-
-.middle[
-  .center[
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  # ¿Por qué es útil?
-  ]
-]
-
----
-
-### Herramienta de análisis:
+# ¿Por qué es útil?
 
 --
 
-#### Reconocimiento de visitas en todo el país
+
+### `r emojifont::emoji("heavy_check_mark")`  Complemento de fuentes existentes
+
+--
+
+### `r emojifont::emoji("heavy_check_mark")`  Granularidad espacio - temporal poco frecuente
+
+
+--
+
+## Caso de Uso 
+
+
+```{r lrn, echo=FALSE, out.height= '120'}
+
+knitr::include_graphics("https://tableros.yvera.tur.ar/recursos/logos_institucionales/ruta_natural_apaisado.png")
+
+```
+
+---
+class: inverse center, middle
+
+# Rutas de la Patagonia & bigdata
+```{r lrn_blaco, echo=FALSE, out.height= '120'}
+
+knitr::include_graphics("https://tableros.yvera.tur.ar/recursos/logos_institucionales/rn_apaisado_blanco.png")
+
+```
+
+---
+
+### Herramienta:
+
+--
+
+#### Análisis de visitas en todo el país
 
 ```{r levanta ifas receptivos, message=FALSE, warning=FALSE, echo = FALSE}
 
@@ -508,10 +529,11 @@ geo_ifas_ext_sample %>%
 
 ---
 
-### Encontrando visitas a Rutas Naturales
+### Encontrando visitas a Ruta Natural Patagonia Andina
 
-- Analizar las visitas con alta granularidad geográfica
-- Diferenciar el dato de origen aún en donde no hay cobertura de encuestas (cada color un pais).
+- Diferenciar las visitas con alta granularidad geográfica 
+- Estimar el origen del visitante aún en donde no hay cobertura de encuestas
+  (cada color es un país de origen diferente).
 
 
 ```{r message=FALSE, warning=FALSE, echo = FALSE}
@@ -542,8 +564,9 @@ ifas_ext_patagonia_andina %>%
 
 ---
 
-### Encontrando visitas a Imperdibles
+### Analizar visitas a Imperdibles
 
+- La georeferenciación precisa permite realizar el análisis para cualquier polígono de interés.
 
 ```{r message=FALSE, warning=FALSE, echo = FALSE, out.height="60%", out.width="90%"}
 
@@ -568,40 +591,11 @@ ifas_ext_patagonia_andina %>%
 
 ```
 
-
 ---
 
-### `r emojifont::emoji("heavy_check_mark")`  Complemento de fuentes existentes
-
---
-
-### `r emojifont::emoji("heavy_check_mark")`  Granularidad espacio - temporal poco frecuente
+### Principales *Insights*
 
 
---
-
-## Caso de Uso 
-
-
-```{r lrn, echo=FALSE, out.height= '120'}
-
-knitr::include_graphics("https://tableros.yvera.tur.ar/recursos/logos_institucionales/ruta_natural_apaisado.png")
-
-```
-
----
-class: inverse center, middle
-
-# Rutas de la Patagonia & bigdata
-```{r lrn_blaco, echo=FALSE, out.height= '120'}
-
-knitr::include_graphics("https://tableros.yvera.tur.ar/recursos/logos_institucionales/rn_apaisado_blanco.png")
-
-```
-
----
-
-Secuencia VIZ (Interno - Receptitvo?)
 
 
 ---
