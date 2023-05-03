@@ -407,10 +407,26 @@ knitr::include_graphics("entradas/plot_banderas.png")
 
 ---
 
-# ¿Por qué es útil?
+
+.middle[
+  .center[
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  # ¿Por qué es útil?
+  ]
+]
+
+---
+
+### Herramienta de análisis:
+### Encontrando visitas a Rutas Naturales e imperdibles
 
 --
 
+#### Reconocimiento de visitas en todo el país
 
 ```{r levanta ifas receptivos, message=FALSE, warning=FALSE, echo = FALSE}
 
@@ -466,8 +482,6 @@ palrn <- function(x) {
 }
   
 
-# rnpal <- colorFactor(dnmye_paletas()(length(unique(rutas_naturales$name))),
-#                        rutas_naturales$name)
 
 rutas_naturales <- rutas_naturales %>% 
   mutate(color = palrn(name))
@@ -492,6 +506,62 @@ geo_ifas_ext_sample %>%
   addCircles(popup = ~ lapply(glue::glue("Fecha: {Date}<br>IFA: {substr(IFA,1,7)}...<br>País: {pais}"),
                               htmltools::HTML))
 ```
+
+---
+
+- Permite analizar las visitas con alta granularidad geográfica
+- Permite diferenciar el dato de origenaún en donde no hay cobertura de encuestas (cada color un pais).
+
+
+```{r message=FALSE, warning=FALSE, echo = FALSE}
+
+patagonia_andina <-  rutas_naturales %>% filter(name == "Ruta de la Patagonia Andina")
+
+ifas_ext_patagonia_andina <- geo_ifas_ext_sample %>% 
+  st_filter(patagonia_andina)
+
+paisespal <- colorFactor(palette = dnmye_paletas()(length(unique(ifas_ext_patagonia_andina$pais))),
+                        domain = unique(ifas_ext_patagonia_andina$pais))
+
+```
+
+
+```{r message=FALSE, warning=FALSE, echo = FALSE, out.height="60%", out.width="90%"}
+
+ifas_ext_patagonia_andina %>% 
+  leaflet() %>% 
+  geoAr::addArgTiles() %>% 
+  addPolygons(data = patagonia_andina, fillColor = ~ color, weight = 0, fillOpacity = 0.8) %>% 
+  setView(lat = -41.137,lng =  -71.304, zoom = 6) %>% 
+  addCircles(color = ~ paisespal(pais), fillOpacity = 1,
+             popup = ~ lapply(glue::glue("Fecha: {Date}<br>IFA: {substr(IFA,1,7)}...<br>País: {pais}"),
+                              htmltools::HTML))
+  # addLegend(pal = factpal, values = unique(geo_ifas_ext_sample$HomeCountry)[1:10], opacity = 1)
+```
+
+---
+
+```{r}
+
+imperdibles <- read_file_srv('big_data/presentacion/imperdibles.gpkg')
+
+imperdibles_patagonia_andina <- imperdibles %>% 
+  filter(ruta_natural == "Patagonia Andina")
+
+
+ifas_ext_patagonia_andina %>% 
+  leaflet() %>% 
+  geoAr::addArgTiles() %>% 
+  addPolygons(data = imperdibles_patagonia_andina, fillColor = "#F7941E", color = "#F7941E", popup = ~ lapply(glue::glue("{nombre_ppal}"),
+                              htmltools::HTML)) %>% 
+  setView(lat = -41.137,lng =  -71.304, zoom = 5) %>% 
+  addCircles(#color = ~ factpal(HomeCountry), fillOpacity = 1,
+             popup = ~ lapply(glue::glue("Fecha: {Date}<br>IFA: {substr(IFA,1,7)}...<br>País: {pais}"),
+                              htmltools::HTML))
+  # addLegend(pal = factpal, values = unique(geo_ifas_ext_sample$HomeCountry)[1:10], opacity = 1) 
+
+```
+
 
 ---
 
