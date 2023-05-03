@@ -40,7 +40,7 @@ background-size: 30%
 
 
 ```{r, echo=FALSE, warning=FALSE}
-library(xaringanExtra)
+library(xaringanExtra) # Extras and Extensions for 'xaringan' Slides, CRAN v0.7.0
 # LOGO COLOR EN PAGs INTERNAS
 xaringanExtra::use_logo(image_url = "https://tableros.yvera.tur.ar/recursos/logos_institucionales/escudo_mdtyd_color.png", 
                         position = css_position(top = "1em", right = "1em"), 
@@ -121,11 +121,36 @@ layout: true
 
 ---
 
+background-image: url(https://pbs.twimg.com/profile_images/1027517456695406592/gQ5V7MVr_400x400.jpg)
+background-position: 70% 25%
+background-size: 15%
+
+### Juan Pablo Ruiz Nicolini
+#### (@TuQmano)
+
+
+`r emojifont::emoji("black_circle" )` Mg. Ciencia Política ([`Universidad Torcuato Di Tella`](https://www.researchgate.net/profile/Juan-Ruiz-Nicolini))
+
+`r emojifont::emoji("black_circle" )` Cientista de Datos ([`tuqmano.r-universe.dev`](https://tuqmano.r-universe.dev/builds))
+
+`r emojifont::emoji("black_circle" )` Director Nacional de Mercados y Estadística ([`MINTURDEP`](https://www.yvera.tur.ar/sinta/))
+
+
+
+
+
+
+---
+background-image: url(https://tableros.yvera.tur.ar/recursos/logos_institucionales/sinta_a_color.png)
+background-position: 60% 25%
+background-size: 20%
+
 
 ## Caracterización del turismo en Argentina
 
 ### Fuentes de Información
 
+--
 
 * Operativos estadísticos (`EOH, ETI, EVyTH`)
 
@@ -137,11 +162,12 @@ layout: true
 
 * Reportes de datos jurisdiccionales (trabajo en progreso: `<data>TUR`)
 
+
 --
 
-### Nueva fuente de información `r emojifont::emoji("heavy_exclamation_mark")`
+### Nueva fuente de información `r emojifont::emoji("heavy_exclamation_mark")` - `big data`
 
-Desarrollo de una nueva fuente de información complementaria a partir de una fuente _big data_ de señales emitidas por aplicaciones de dispositivos móviles
+`Desarrollo de una fuente de información complementaria a partir de señales emitidas por aplicaciones de dispositivos móviles`
 
 ---
 class: inverse
@@ -209,13 +235,14 @@ class: inverse, center, middle
 
 ```{r ifas,  message=FALSE, warning=FALSE, echo = FALSE, out.height='75%'}
 library(herramientas)
-library(tidyverse)
-library(sf)
-library(leaflet)
+library(tidyverse) # Easily Install and Load the 'Tidyverse', CRAN v1.3.2 # Easily Install and Load the 'Tidyverse', CRAN v1.3.2
+library(sf) # Simple Features for R, CRAN v1.0-9 # Simple Features for R, CRAN v1.0-9
+library(leaflet) # Create Interactive Web Maps with the JavaScript 'Leaflet'
 
 
 
-ifa_bariloche <- read_sf("entradas/barilocho_ifas_interno.geojson")
+
+ifa_bariloche <- read_sf("entradas/bariloche_ifas_interno.geojson")
 
 
 
@@ -225,8 +252,30 @@ leaflet() %>%
 
 
 
+```
+
+---
 
 
+```{r eval = FALSE}
+
+library(sf) # Simple Features for R, CRAN v1.0-9 # Simple Features for R, CRAN v1.0-9
+library(tidyverse) # Easily Install and Load the 'Tidyverse', CRAN v1.3.2 # Easily Install and Load the 'Tidyverse', CRAN v1.3.2
+library(leaflet) # Create Interactive Web Maps with the JavaScript 'Leaflet'
+library(geoAr)
+
+ifas <- tbl(con, "ifa")
+
+
+ifa_bariloche <- ifas %>%
+  filter(home_dto == 226) %>% #Bariloche
+  collect() %>% 
+  st_as_sf(coords = c("home_lon","home_lat"), crs = 4326)
+
+
+leaflet() %>%
+  addProviderTiles("CartoDB.DarkMatter") %>%
+  addCircles(data = ifa_bariloche)
 
 
 ```
