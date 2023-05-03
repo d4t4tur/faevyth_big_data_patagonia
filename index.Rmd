@@ -501,7 +501,7 @@ rutas_naturales <- rutas_naturales %>%
 geo_ifas_ext_sample %>% 
   leaflet() %>% 
   geoAr::addArgTiles() %>% 
-  addPolygons(data = rutas_naturales, fillColor = ~ color, weight = 0, fillOpacity = 0.8) %>% 
+  addPolygons(data = rutas_naturales, fillColor = ~ color, weight = 0, fillOpacity = 0.7, popup = ~ name) %>% 
   addCircles(popup = ~ lapply(glue::glue("Fecha: {Date}<br>IFA: {substr(IFA,1,7)}...<br>País: {pais}"),
                               htmltools::HTML))
 ```
@@ -532,7 +532,7 @@ paisespal <- colorFactor(palette = dnmye_paletas()(length(unique(ifas_ext_patago
 ifas_ext_patagonia_andina %>% 
   leaflet() %>% 
   geoAr::addArgTiles() %>% 
-  addPolygons(data = patagonia_andina, fillColor = ~ color, weight = 0, fillOpacity = 0.8) %>% 
+  addPolygons(data = patagonia_andina, fillColor = ~ color, weight = 0, fillOpacity = 0.7, popup = ~ name) %>% 
   setView(lat = -41.137,lng =  -71.304, zoom = 6) %>% 
   addCircles(color = ~ paisespal(pais), fillOpacity = 1,
              popup = ~ lapply(glue::glue("Fecha: {Date}<br>IFA: {substr(IFA,1,7)}...<br>País: {pais}"),
@@ -545,7 +545,7 @@ ifas_ext_patagonia_andina %>%
 ### Encontrando visitas a Imperdibles
 
 
-```{r}
+```{r message=FALSE, warning=FALSE, echo = FALSE, out.height="60%", out.width="90%"}
 
 imperdibles <- read_file_srv('big_data/presentacion/imperdibles.gpkg')
 
@@ -556,12 +556,14 @@ imperdibles_patagonia_andina <- imperdibles %>%
 ifas_ext_patagonia_andina %>% 
   leaflet() %>% 
   geoAr::addArgTiles() %>% 
-  addPolygons(data = imperdibles_patagonia_andina, fillColor = "#F7941E", color = "#F7941E", popup = ~ lapply(glue::glue("{nombre_ppal}"),
-                              htmltools::HTML)) %>% 
-  setView(lat = -41.137,lng =  -71.304, zoom = 5) %>% 
-  addCircles(#color = ~ factpal(HomeCountry), fillOpacity = 1,
+  addPolygons(data = imperdibles_patagonia_andina,
+              fillColor = dnmye_colores("pera"),
+              color = dnmye_colores("pera"), popup = ~ lapply(glue::glue("{nombre_ppal}"),
+                              htmltools::HTML), fillOpacity = 0.7) %>% 
+  setView(lat = -41.137,lng =  -71.304, zoom = 6) %>% 
+  addCircles(color = ~ paisespal(pais), 
              popup = ~ lapply(glue::glue("Fecha: {Date}<br>IFA: {substr(IFA,1,7)}...<br>País: {pais}"),
-                              htmltools::HTML))
+                              htmltools::HTML), fillOpacity = 1)
   # addLegend(pal = factpal, values = unique(geo_ifas_ext_sample$HomeCountry)[1:10], opacity = 1) 
 
 ```
