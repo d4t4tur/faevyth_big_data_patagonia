@@ -323,6 +323,67 @@ class: inverse, center, middle
 
 5. Registros seleccionados: **6,44 M** de **373.287** IFAs únicos
 
+---
+### Botón de muestra: IFAs únicos por país de origen
+
+```{r graf ifas ext x pais,  message=FALSE, warning=FALSE, echo = FALSE}
+
+library(tidyverse)
+library(arrow)
+library(comunicacion)
+
+paises_nombres <- read_csv('https://gist.githubusercontent.com/brenes/1095110/raw/c8f208b03485ba28f97c500ab7271e8bce43b9c6/paises.csv')
+
+renombrar_paises <- function(x) {
+  left_join(x, paises_nombres %>% select(iso2, nombre), 
+            by = c("HomeCountry" = "iso2")) %>% 
+  select(pais = nombre, everything())
+  }
+
+# ifas_ext <- read_parquet("entradas/ifas_extranjeros_enarg.parquet")
+# 
+# n_ifas_pais <- ifas_ext %>% 
+#   distinct(IFA, HomeCountry) %>% 
+#   group_by(HomeCountry) %>% 
+#   summarise(n = n())
+# 
+# write_rds(n_ifas_pais, 'entradas/n_ifas_pais.rds')
+
+n_ifas_pais <- read_rds('entradas/n_ifas_pais.rds')
+
+n_ifas_pais <- n_ifas_pais %>% 
+  mutate(HomeCountry = fct_lump(HomeCountry,
+                                n = 15, w = n, other_level = "Otros")) %>%
+  group_by(HomeCountry) %>% 
+  summarise(n = sum(n)) %>% 
+  ungroup() 
+
+n_ifas_pais <- renombrar_paises(n_ifas_pais)
+
+n_ifas_pais <- n_ifas_pais %>% 
+  mutate(pais = ifelse(HomeCountry == "Otros", "Otros paises", pais))
+
+n_ifas_pais <- n_ifas_pais %>% 
+  mutate(pais = fct_reorder(pais, n))
+
+ggplot(n_ifas_pais) +
+  geom_col(aes(pais, n, fill = pais),
+           show.legend = F) +
+  geom_text(aes(pais, n+log(n)/2, 
+                 label = lbl_int(n)),
+             hjust = -0.3) +
+  scale_fill_dnmye() +
+  scale_y_continuous(labels = lbl_int, expand = expansion(add = c(0, 25000))) +
+  coord_flip() +
+  labs(x = "", y = "IFAs Únicos") +
+  theme_minimal() +
+  theme(text = element_text(size = 20)) +
+  ggimage::geom_flag(data = n_ifas_pais,
+                     aes(x = pais, y = n+2*10^3*log(n/2)+2000,
+                         image = HomeCountry))
+```
+
+
 
 ---
 
