@@ -159,124 +159,11 @@ layout: true
 ---
 
 
-```{r graf ifas ext x pais,  message=FALSE, warning=FALSE, echo = FALSE, out.width="80%"}
-
-library(tidyverse)
-library(arrow)
-library(comunicacion)
-library(herramientas)
-library(leaflet)
-library(sf)
-
-paises_nombres <- read_csv('https://gist.githubusercontent.com/brenes/1095110/raw/c8f208b03485ba28f97c500ab7271e8bce43b9c6/paises.csv')
-
-renombrar_paises <- function(x) {
-  left_join(x, paises_nombres %>% select(iso2, nombre), 
-            by = c("HomeCountry" = "iso2")) %>% 
-  select(pais = nombre, everything())
-  }
-
-# ifas_ext <- read_file_srv("DataDNMYE/big_data/receptivo/ifas_extranjeros_enarg.parquet")
-# 
-# n_ifas_pais <- ifas_ext %>% 
-#   distinct(IFA, HomeCountry) %>% 
-#   group_by(HomeCountry) %>% 
-#   summarise(n = n())
-# 
-# write_rds(n_ifas_pais, 'entradas/n_ifas_pais.rds')
-
-n_ifas_pais <- read_rds('entradas/n_ifas_pais.rds')
-
-n_ifas_pais <- n_ifas_pais %>% 
-  mutate(HomeCountry = fct_lump(HomeCountry,
-                                n = 15, w = n, other_level = "Otros")) %>%
-  group_by(HomeCountry) %>% 
-  summarise(n = sum(n)) %>% 
-  ungroup() 
-
-n_ifas_pais <- renombrar_paises(n_ifas_pais)
-
-n_ifas_pais <- n_ifas_pais %>% 
-  mutate(pais = ifelse(HomeCountry == "Otros", "Otros paises", pais))
-
-n_ifas_pais <- n_ifas_pais %>% 
-  mutate(pais = fct_reorder(pais, n))
-
-ggplot(n_ifas_pais) +
-  geom_col(aes(pais, n, fill = pais),
-           show.legend = F) +
-  geom_text(aes(pais, n+log(n)/2, 
-                 label = lbl_int(n)),
-             hjust = -0.3) +
-  scale_fill_dnmye() +
-  scale_y_continuous(labels = lbl_int, expand = expansion(add = c(0, 25000))) +
-  coord_flip() +
-  labs(x = "", y = "IFAs Únicos") +
-  theme_minimal() +
-  theme(text = element_text(size = 20)) +
-  ggimage::geom_flag(data = n_ifas_pais,
-                     aes(x = pais, y = n+2*10^3*log(n/2)+2000,
-                         image = HomeCountry))
-```
-
----
 
 ### Herramienta de análisis: encontrando visitas a Rutas Naturales e imperdibles
 
-```{r}
 
 
-
-geo_ifas_ext_sample <- read_file_srv("big_data/presentacion/sample_ifas_receptivo.parquet")
-
-# set.seed(45)
-
-# geo_ifas_ext_sample <- geo_ifas_ext %>% 
-#   slice_sample(n = 5000) 
-
-geo_ifas_ext_sample <- renombrar_paises(geo_ifas_ext_sample)
-
-geo_ifas_ext_sample <-  geo_ifas_ext_sample %>% 
-  st_as_sf(coords = c("Lon", "Lat"), crs = 4326)
-
-
-paispal <- colorFactor(dnmye_paletas()(length(unique(geo_ifas_ext_sample$HomeCountry))),
-                       geo_ifas_ext_sample$HomeCountry)
-
-geo_ifas_ext_sample %>% 
-  leaflet() %>% 
-  geoAr::addArgTiles() %>% 
-  addCircles(#color = ~ paispal(HomeCountry), fillOpacity = 1,
-             popup = ~ lapply(glue::glue("Fecha: {Date}<br>IFA: {substr(IFA,1,7)}...<br>País: {pais}"),
-                              htmltools::HTML)) # %>% 
-  # addLegend(pal = paispal, values = unique(geo_ifas_ext_sample$HomeCountry)[1:10], opacity = 1)
-  
-
-
-```
-
----
-
-```{r}
-rutas_naturales <- read_file_srv('big_data/presentacion/rutas_naturales.geojson')
-
-rutas_naturales <- rutas_naturales %>% 
-  group_by(name) %>% 
-  mutate(geometry = st_union(geometry))
-
-rnpal <- colorFactor(dnmye_paletas()(length(unique(rutas_naturales$name))),
-                       rutas_naturales$name)
-
-geo_ifas_ext_sample %>% 
-  leaflet() %>% 
-  geoAr::addArgTiles() %>% 
-  addPolygons(data = rutas_naturales, fillColor = ~rnpal(name), weight = 0) %>% 
-  addCircles(#color = ~ factpal(HomeCountry), fillOpacity = 1,
-             popup = ~ lapply(glue::glue("Fecha: {Date}<br>IFA: {substr(IFA,1,7)}...<br>País: {pais}"),
-                              htmltools::HTML))
-  # addLegend(pal = factpal, values = unique(geo_ifas_ext_sample$HomeCountry)[1:10], opacity = 1) 
-
-```
 
 ---
 
@@ -288,6 +175,12 @@ ifas_ext_patagonia_andina <- geo_ifas_ext_sample %>%
   st_filter(patagonia_andina)
 
 
+
+```
+
+
+```{r}
+
 ifas_ext_patagonia_andina %>% 
   leaflet() %>% 
   geoAr::addArgTiles() %>% 
@@ -296,8 +189,7 @@ ifas_ext_patagonia_andina %>%
   addCircles(#color = ~ factpal(HomeCountry), fillOpacity = 1,
              popup = ~ lapply(glue::glue("Fecha: {Date}<br>IFA: {substr(IFA,1,7)}...<br>País: {pais}"),
                               htmltools::HTML))
-  # addLegend(pal = factpal, values = unique(geo_ifas_ext_sample$HomeCountry)[1:10], opacity = 1) 
-
+  # addLegend(pal = factpal, values = unique(geo_ifas_ext_sample$HomeCountry)[1:10], opacity = 1)
 ```
 
 ---
@@ -322,4 +214,5 @@ ifas_ext_patagonia_andina %>%
   # addLegend(pal = factpal, values = unique(geo_ifas_ext_sample$HomeCountry)[1:10], opacity = 1) 
 
 ```
+
 
