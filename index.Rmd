@@ -77,7 +77,7 @@ style_mono_light(outfile = "dnmye_theme.css", # CSS FILE
 ```
 
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE, eval = FALSE}
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(
   fig.width=9, fig.height=3.5, fig.retina=3,
@@ -400,6 +400,16 @@ ggplot(n_ifas_pais) +
 ### `r emojifont::emoji("heavy_check_mark")`  Granularidad espacio - temporal poco frecuente
 
 
+--
+
+## Caso de Uso 
+
+
+```{r lrn, echo=FALSE, out.height= '120'}
+
+knitr::include_graphics("https://tableros.yvera.tur.ar/recursos/logos_institucionales/ruta_natural_apaisado.png")
+
+```
 
 
 
