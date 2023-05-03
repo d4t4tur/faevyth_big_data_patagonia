@@ -422,7 +422,6 @@ knitr::include_graphics("entradas/plot_banderas.png")
 ---
 
 ### Herramienta de análisis:
-### Encontrando visitas a Rutas Naturales e imperdibles
 
 --
 
@@ -509,8 +508,10 @@ geo_ifas_ext_sample %>%
 
 ---
 
-- Permite analizar las visitas con alta granularidad geográfica
-- Permite diferenciar el dato de origenaún en donde no hay cobertura de encuestas (cada color un pais).
+### Encontrando visitas a Rutas Naturales
+
+- Analizar las visitas con alta granularidad geográfica
+- Diferenciar el dato de origen aún en donde no hay cobertura de encuestas (cada color un pais).
 
 
 ```{r message=FALSE, warning=FALSE, echo = FALSE}
@@ -540,6 +541,9 @@ ifas_ext_patagonia_andina %>%
 ```
 
 ---
+
+### Encontrando visitas a Imperdibles
+
 
 ```{r}
 
