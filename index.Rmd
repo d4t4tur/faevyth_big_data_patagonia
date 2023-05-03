@@ -190,7 +190,7 @@ Se puede determinar el _país de origen_ del dispositivo  (mercados internaciona
 ---
 class: inverse, center, middle
 
-## (A) Ejemplo:  IFAs `Residentes`
+## (A) Ejemplo:  Ids `Residentes`
 
 ---
 
@@ -204,7 +204,7 @@ class: inverse, center, middle
 
 --
 
-#### Procesamiento (Ejemplo IFAs)
+#### Procesamiento (Ejemplo Ids)
 
 
 3. Registros iniciales: **70M** 
@@ -219,7 +219,7 @@ class: inverse, center, middle
 
 --
 
-6. IFAs únicos: **16M**
+6. Ids únicos: **16M**
 
 --
 
@@ -231,7 +231,7 @@ class: inverse, center, middle
 
 ---
 
-### Botón de muestra: IFAs con origen en BARILOCHE
+### Botón de muestra: Ids con origen en BARILOCHE
 
 ```{r ifas,  message=FALSE, warning=FALSE, echo = FALSE, out.height='75%'}
 library(herramientas)
@@ -285,7 +285,7 @@ leaflet() %>%
 ---
 class: inverse, center, middle
 
-## (B) Ejemplo: IFA´s `receptivo`
+## (B) Ejemplo: Id´s `receptivo`
 
 ---
 
@@ -300,7 +300,7 @@ class: inverse, center, middle
 
 --
 
-#### Procesamiento (Ejemplo IFAs)
+#### Procesamiento (Ejemplo Ids)
 
 
 1. Registros iniciales: **16,69 M**
@@ -321,10 +321,10 @@ class: inverse, center, middle
 
 #### Datos resultantes
 
-5. Registros seleccionados: **6,44 M** de **373.287** IFAs únicos
+5. Registros seleccionados: **6,44 M** de **373.287** Ids únicos
 
 ---
-### Botón de muestra: IFAs únicos por país de origen
+### Botón de muestra: Ids únicos por país de origen
 
 ```{r graf ifas ext x pais,  message=FALSE, warning=FALSE, echo = FALSE, eval=FALSE}
 
@@ -419,6 +419,19 @@ knitr::include_graphics("https://tableros.yvera.tur.ar/recursos/logos_institucio
 
 ```
 
+---
+class: inverse center, middle
+
+# Rutas de la Patagonia & bigdata
+```{r lrn_blaco, echo=FALSE, out.height= '120'}
+
+knitr::include_graphics("https://tableros.yvera.tur.ar/recursos/logos_institucionales/rn_apaisado_blanco.png")
+
+```
+
+---
+
+Secuencia VIZ (Interno - Receptitvo?)
 
 
 ---
