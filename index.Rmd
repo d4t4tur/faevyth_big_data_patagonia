@@ -482,7 +482,7 @@ rutas_naturales <- rutas_naturales %>%
 ```
 
 
-```{r plot-first, warning=FALSE, echo=FALSE, out.height="60%"}
+```{r plot-first, warning=FALSE, echo=FALSE, out.height="60%", out.width="90%"}
 
 
 geo_ifas_ext_sample %>% 
