@@ -326,7 +326,7 @@ class: inverse, center, middle
 ---
 ### Botón de muestra: IFAs únicos por país de origen
 
-```{r graf ifas ext x pais,  message=FALSE, warning=FALSE, echo = FALSE}
+```{r graf ifas ext x pais,  message=FALSE, warning=FALSE, echo = FALSE, eval=FALSE}
 
 library(tidyverse)
 library(arrow)
@@ -366,23 +366,31 @@ n_ifas_pais <- n_ifas_pais %>%
 n_ifas_pais <- n_ifas_pais %>% 
   mutate(pais = fct_reorder(pais, n))
 
-ggplot(n_ifas_pais) +
+plot <- ggplot(n_ifas_pais) +
   geom_col(aes(pais, n, fill = pais),
            show.legend = F) +
-  geom_text(aes(pais, n+log(n)/2, 
+  geom_text(aes(pais, n, 
                  label = lbl_int(n)),
-             hjust = -0.3) +
+             hjust = -0.15, size = 2.5) +
+    ggimage::geom_flag(data = n_ifas_pais,
+                     aes(x = pais, y = n+28000,
+                         image = HomeCountry)) +
   scale_fill_dnmye() +
   scale_y_continuous(labels = lbl_int, expand = expansion(add = c(0, 25000))) +
   coord_flip() +
-  labs(x = "", y = "IFAs Únicos") +
+  labs(x = "", y = "") +
   theme_minimal() +
-  theme(text = element_text(size = 20)) +
-  ggimage::geom_flag(data = n_ifas_pais,
-                     aes(x = pais, y = n+2*10^3*log(n/2)+2000,
-                         image = HomeCountry))
+  theme(text = element_text(size = 12)) 
+
+
+ggsave(plot = plot, "entradas/plot_banderas.png", dpi = 300,
+       width = 6, height = 4)
 ```
 
+
+```{r echo=FALSE, out.height="70%", out.width="70%"}
+knitr::include_graphics("entradas/plot_banderas.png")
+```
 
 
 ---
