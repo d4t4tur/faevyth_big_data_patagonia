@@ -593,22 +593,107 @@ ifas_ext_patagonia_andina %>%
 
 ---
 
-## Principales *Insights*
+## Principales `Insights`
 
 --
 
-### Receptivo
-
----
-
 ## Receptivo
 
+---
 
+```{r echo=FALSE, out.height="60%", out.width="70%"}
+knitr::include_graphics("entradas/top_pais_rn_andina.png")
+```
 
+---
+
+--
+
+```{r echo=FALSE, out.height="60%", out.width="70%"}
+knitr::include_graphics("entradas/ranking_imperdibles_andina.png")
+```
+
+---
+
+--
+
+```{r echo=FALSE, out.height="60%", out.width="70%"}
+knitr::include_graphics("entradas/paises_Parque Nacional Nahuel Huapi.png")
+```
 
 
 ---
 
+--
+
+```{r echo=FALSE, out.height="60%", out.width="70%"}
+knitr::include_graphics("entradas/paises_Ruta de los Siete Lagos.png")
+```
+
+---
+
+--
+
+```{r echo=FALSE, out.height="60%", out.width="70%"}
+knitr::include_graphics("entradas/imperdibles_Patagonia Andina_Brasil.png")
+```
+
+---
+
+--
+
+```{r echo=FALSE, out.height="60%", out.width="70%"}
+knitr::include_graphics("entradas/imperdibles_Patagonia Andina_Estados Unidos de América.png")
+```
+
+
+---
+
+## Principales `Insights`
+
+--
+
+### Interno
+
+--
+
+#### Análisis de IFAs de Argentina que visitaron `Nahuel Huapi`
+
+---
+
+#### Según provincia de origen
+
+```{r echo=FALSE, out.height="70%", out.width="70%"}
+knitr::include_graphics("entradas/origen_prov_Parque Nacional Nahuel Huapi.png")
+```
+
+---
+
+#### Top 10 departamentos de origen
+
+
+```{r echo=FALSE, out.height="30%", out.width="70%"}
+knitr::include_graphics("entradas/origen_depto_Parque Nacional Nahuel Huapi.png")
+```
+
+---
+
+#### Visitantes según Nivel Socio-Económico
+
+
+```{r echo=FALSE, out.height="70%", out.width="70%"}
+knitr::include_graphics("entradas/nse_Parque Nacional Nahuel Huapi.png")
+```
+
+---
+
+#### Visitantes según NSE desagregado por provincia de origen
+
+```{r echo=FALSE, out.height="70%", out.width="70%"}
+knitr::include_graphics("entradas/faevyt_patagonia.png")
+```
+
+---
 
 class:  center, middle
 
