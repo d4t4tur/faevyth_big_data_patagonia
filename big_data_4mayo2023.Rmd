@@ -156,15 +156,15 @@ B) No residentes: se puede determinar el _país de origen_ del dispositivo (merc
 
 ---
 
-## Ejemplo: IFAs Residentes:  
+## Ejemplo: IFAs Residentes
 
 ### Punto de partida 
 
-1. 6.700M registros,  4 datasets (`GEO, IFA, CEL/CLD, APPS`), 300 GB información
+1. 6.700M registros;  4 _datasets_ (`IFA, GEO, CEL/CDL, APPS`); 300 GB información
 
 --
 
-2. Actividad de 17M de celulares únicos, durante 12 meses, granularidad diaria (año prepandemia).
+2. Actividad de 17M de celulares únicos, durante 12 meses, con granularidad diaria (año pre pandemia).
 
 --
 
@@ -193,9 +193,9 @@ B) No residentes: se puede determinar el _país de origen_ del dispositivo (merc
 
 ---
 
-### Botón de muestra
+### Botón de muestra: IFAs con origen en BARILOCHE
 
-```{r ifas,  message=FALSE, warning=FALSE, echo = FALSE}
+```{r ifas,  message=FALSE, warning=FALSE, echo = FALSE, out.height='75%'}
 library(herramientas)
 library(tidyverse)
 library(sf)
@@ -203,25 +203,13 @@ library(leaflet)
 
 
 
-# ifas <- herramientas::read_file_srv("big_data/viajeros_geo.parquet")
-# 
-# 
-# 
-# ifa_bariloche <- ifas %>%
-#   filter(home_dto == 226) %>% #Bariloche
-#   collect() %>% 
-#   st_as_sf(crs = 4326)
-
-# 
-# sf::write_sf(ifa_bariloche, "entradas/barilocho_ifas_interno.geojson")
-
 ifa_bariloche <- read_sf("entradas/barilocho_ifas_interno.geojson")
 
 
 
 leaflet() %>%
-  addProviderTiles("CartoDB.DarkMatter") %>%
-  addCircles(data = ifa_bariloche, color = "yellow") 
+  geoAr::addArgTiles() %>% 
+  addCircles(data = ifa_bariloche, color = "blue") 
 
 
 
@@ -230,6 +218,16 @@ leaflet() %>%
 
 
 ```
+
+---
+# ¿Por qué es útil?
+
+--
+
+### `r emojifont::emoji("heavy_check_mark")`  Agrega nueva capa de información
+
+### `r emojifont::emoji("heavy_check_mark")`  Complemento de fuentes existentes
+
 
 
 ---
