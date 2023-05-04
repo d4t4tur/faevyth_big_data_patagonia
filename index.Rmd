@@ -595,9 +595,8 @@ ifas_ext_patagonia_andina %>%
 
 ## Principales `Insights`
 
---
 
-## Receptivo
+### Receptivo
 
 ---
 
@@ -607,7 +606,6 @@ knitr::include_graphics("entradas/top_pais_rn_andina.png")
 
 ---
 
---
 
 ```{r echo=FALSE, out.height="60%", out.width="70%"}
 knitr::include_graphics("entradas/ranking_imperdibles_andina.png")
@@ -615,16 +613,11 @@ knitr::include_graphics("entradas/ranking_imperdibles_andina.png")
 
 ---
 
---
-
 ```{r echo=FALSE, out.height="60%", out.width="70%"}
 knitr::include_graphics("entradas/paises_Parque Nacional Nahuel Huapi.png")
 ```
 
-
 ---
-
---
 
 ```{r echo=FALSE, out.height="60%", out.width="70%"}
 knitr::include_graphics("entradas/paises_Ruta de los Siete Lagos.png")
@@ -632,15 +625,11 @@ knitr::include_graphics("entradas/paises_Ruta de los Siete Lagos.png")
 
 ---
 
---
-
 ```{r echo=FALSE, out.height="60%", out.width="70%"}
 knitr::include_graphics("entradas/imperdibles_Patagonia Andina_Brasil.png")
 ```
 
 ---
-
---
 
 ```{r echo=FALSE, out.height="60%", out.width="70%"}
 knitr::include_graphics("entradas/imperdibles_Patagonia Andina_Estados Unidos de América.png")
@@ -651,11 +640,7 @@ knitr::include_graphics("entradas/imperdibles_Patagonia Andina_Estados Unidos de
 
 ## Principales `Insights`
 
---
-
 ### Interno
-
---
 
 #### Análisis de IFAs de Argentina que visitaron `Nahuel Huapi`
 
