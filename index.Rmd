@@ -442,11 +442,9 @@ knitr::include_graphics("https://tableros.yvera.tur.ar/recursos/logos_institucio
 
 ---
 
-### Herramienta:
+### ¿Cómo usamos la herramienta?
 
---
-
-#### Análisis de visitas en todo el país
+#### Análisis de visitas en todo el país (receptivo)
 
 ```{r levanta ifas receptivos, message=FALSE, warning=FALSE, echo = FALSE}
 
@@ -529,9 +527,10 @@ geo_ifas_ext_sample %>%
 
 ---
 
-### Encontrando visitas a Ruta Natural Patagonia Andina
+### Encontrando visitas 
+ 
+- Diferenciar las visitas con alta granularidad geográfica (`Ruta Natural Patagonia Andina`)
 
-- Diferenciar las visitas con alta granularidad geográfica 
 - Estimar el origen del visitante aún en donde no hay cobertura de encuestas
   (cada color es un país de origen diferente).
 
@@ -592,11 +591,12 @@ ifas_ext_patagonia_andina %>%
 ```
 
 ---
+class: inverse, center, middle
 
-## Principales `Insights`
+## Principales hallazgos
 
 
-### Receptivo
+# IDs Receptivos (no residentes)
 
 ---
 
@@ -637,12 +637,13 @@ knitr::include_graphics("entradas/imperdibles_Patagonia Andina_Estados Unidos de
 
 
 ---
+class: inverse, center, middle
 
-## Principales `Insights`
+## Principales hallazgos
 
-### Interno
+### IDs residentes - viajes internos
 
-#### Análisis de IFAs de Argentina que visitaron `Nahuel Huapi`
+#### Visitaron `PN Nahuel Huapi`
 
 ---
 
@@ -663,7 +664,7 @@ knitr::include_graphics("entradas/origen_depto_Parque Nacional Nahuel Huapi.png"
 
 ---
 
-#### Visitantes según Nivel Socio-Económico
+#### Visitantes según Nivel Socio-Económico (NSE)
 
 
 ```{r echo=FALSE, out.height="70%", out.width="70%"}
@@ -672,7 +673,7 @@ knitr::include_graphics("entradas/nse_Parque Nacional Nahuel Huapi.png")
 
 ---
 
-#### Visitantes según NSE desagregado por provincia de origen
+#### Visitantes según NSE, por provincia de origen
 
 ```{r echo=FALSE, out.height="70%", out.width="70%"}
 knitr::include_graphics("entradas/faevyt_patagonia.png")
@@ -680,7 +681,7 @@ knitr::include_graphics("entradas/faevyt_patagonia.png")
 
 ---
 
-class:  center, middle
+class:  center, middle, inverse
 
 # ¡Muchas gracias!
 
